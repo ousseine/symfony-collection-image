@@ -1,0 +1,5 @@
+<form name="delete_form" action="{{ path('image_delete_edit', {id: image.id}) }}" method="post">
+    <input type="hidden" name="_token" value="{{ csrf_token('delete') }}" />
+
+    <button type="submit" class="btn-danger w-full">Supprimer</button>
+</form>

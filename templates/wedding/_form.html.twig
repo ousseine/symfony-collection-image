@@ -1,0 +1,49 @@
+{% form_theme form 'form.html.twig' %}
+{% set route = app.request.get('_route') == 'wedding_new' %}
+
+{{ form_start(form) }}
+<div class="relative mb-4" data-te-input-wrapper-init>
+    {{ form_widget(form.mary) }}
+    {{ form_label(form.mary) }}
+</div>
+
+<div class="relative mb-4" data-te-input-wrapper-init>
+    {{ form_widget(form.wife) }}
+    {{ form_label(form.wife) }}
+</div>
+
+<div class="relative mb-4" data-te-input-wrapper-init>
+    {{ form_widget(form.description) }}
+    {{ form_label(form.description) }}
+</div>
+
+<div class="relative mb-4" data-te-input-wrapper-init>
+    {{ form_widget(form.city) }}
+    {{ form_label(form.city) }}
+</div>
+
+<div class="relative mb-4" data-te-input-wrapper-init>
+{#    <div class="absolute inset-y-0 left-0 flex items-center pl-3.5 pointer-events-none">#}
+{#        <svg class="w-4 h-4 text-gray-500 dark:text-gray-400" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 20 20">#}
+{#            <path d="M20 4a2 2 0 0 0-2-2h-2V1a1 1 0 0 0-2 0v1h-3V1a1 1 0 0 0-2 0v1H6V1a1 1 0 0 0-2 0v1H2a2 2 0 0 0-2 2v2h20V4ZM0 18a2 2 0 0 0 2 2h16a2 2 0 0 0 2-2V8H0v10Zm5-8h10a1 1 0 0 1 0 2H5a1 1 0 0 1 0-2Z"/>#}
+{#        </svg>#}
+{#    </div>#}
+    {{ form_widget(form.weddAt) }}
+    {{ form_label(form.weddAt) }}
+</div>
+
+{% if route %}
+    <div class="space-y-4">
+        <div class="images"
+             data-index="{{ form.images|length > 0 ? form.images|last.vars.name + 1 : 0 }}"
+             data-prototype="{{ form_widget(form.images.vars.prototype)|e('html_attr') }}">
+        </div>
+        <button type="button" class="btn-primary-xs image_item" data-collection-holder-class="images">Ajouter une images</button>
+    </div>
+{% endif %}
+
+<div class="mt-6 flex items-center justify-end gap-x-6">
+    <button type="button" class="btn-cancel">Annuler</button>
+    <button type="submit" class="btn-primary">{{ route ? 'Ajouter un nouveau' : 'Enregistrer' }}</button>
+</div>
+{{ form_end(form) }}
